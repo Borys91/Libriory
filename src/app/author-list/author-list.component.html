@@ -1,0 +1,109 @@
+<div class="row wrapper">
+   <div class="wrapper__form">
+      <!-- Добавление автора -->
+      <form #formAuthor="ngForm" action="#" class="addAuthor">
+         <p><b>Добавить автора :</b> </p>
+         <div>
+            <label for="">Фамилия :</label>
+            <input type="text" name="surname" ngModel required id="surnameAdd">
+         </div>
+         <div>
+            <label for="">Имя :</label>
+            <input type="text" name="name" ngModel required id="nameAdd">
+         </div>
+         <div>
+            <label for="">Отчество :</label>
+            <input type="text" name="middleName" ngModel id="middleNameAdd">
+         </div>
+         <div>
+            <label for="">Дата рождения:</label>
+            <input type="date" name="date" id="" ngModel required id="dateAdd">
+         </div>
+         <input type="submit" value="Добавить автора" [disabled]="formAuthor.invalid" (click)="addAuthor(formAuthor)">
+      </form>
+
+      <!-- Редактировать автора -->
+
+      <form #formRedacAuthor="ngForm" action="#" class="redactAuthor">
+         <div>
+            <p><b>Редактировать автора:</b></p>
+            <select ngModel name="idAuthor">
+               <option value="{{author.name}} {{author.surname}}" *ngFor="let author of authors">{{author.name}}
+                  {{author.surname}}</option>
+            </select>
+         </div>
+         <div>
+            <label for="">Фамилия :</label>
+            <input type="text" name="surname" ngModel required id="surnameAdd">
+         </div>
+         <div>
+            <label for="">Имя :</label>
+            <input type="text" name="name" ngModel required id="nameAdd">
+         </div>
+         <div>
+            <label for="">Отчество :</label>
+            <input type="text" name="middleName" ngModel id="middleNameAdd">
+         </div>
+         <div>
+            <label for="">Дата рождения:</label>
+            <input type="date" name="date" id="" ngModel required id="dateAdd">
+         </div>
+         <input type="submit" value="Редактировать автора" [disabled]="formRedacAuthor.invalid"
+            (click)="redactAuthor(formRedacAuthor)">
+
+      </form>
+
+      <!-- Удалить автора -->
+
+      <form #formDelAuthor="ngForm" action="#" class="delAuthor">
+         <div>
+            <p><b>Удалить автора:</b></p>
+            <select ngModel name="idAuthor" required>
+               <option value="{{author.name}} {{author.surname}}" *ngFor="let author of authors">{{author.name}}
+                  {{author.surname}}</option>
+            </select>
+         </div>
+
+         <input type="submit" value="Удалить автора" [disabled]="formDelAuthor.invalid"
+            (click)="delAuthor(formDelAuthor)">
+
+      </form>
+   </div>
+   <div class="wrapper__authors authors">
+      <!-- Вывод авторов -->
+      <div>
+         <table class="table table-hover table-dark authors__table">
+            <thead>
+               <tr>
+                  <th scope="col">Фамилия</th>
+                  <th scope="col">Имя</th>
+                  <th scope="col">Отчество</th>
+                  <th scope="col">Дата рождения</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr *ngFor="let author of authors">
+                  <th>{{author.surname}}</th>
+                  <td>{{author.name}}</td>
+                  <td>{{author.middleName}}</td>
+                  <td>{{author.date}}</td>
+                  <td><button (click)="showBook(author)" class="btn btn-info">Смотреть книги</button></td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+      <!-- Поиск книги -->
+      <div class="search">
+         <form #formSearchBook="ngForm" action="#">
+            <div>
+               <input type="text" name="name" ngModel required id="searchBook">
+               <input type="submit" value="Найти книгу" [disabled]="formSearchBook.invalid"
+                  (click)="searchBook(formSearchBook)">
+            </div>
+            <p *ngFor="let book of searchBooks">{{book.name}} {{book.numberOfPages}} {{book.genre}} {{book.author}}</p>
+            <input type="submit" value="Очистить поиск" (click)="delSearchBook(formSearchBook)">
+         </form>
+
+      </div>
+   </div>
+</div>

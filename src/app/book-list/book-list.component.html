@@ -1,0 +1,96 @@
+<!-- <ul *ngFor="let book of authorBook">
+   <li>{{book.name}} {{book.numberOfPages}} {{book.genre}}</li>
+</ul> -->
+<div class="container">
+   <div class="wrapper">
+      <div class="wrapper__books">
+         <table class="table table-hover table-dark wrapper__table">
+            <thead>
+               <tr>
+                  <th scope="col">Название</th>
+                  <th scope="col">Количество страниц</th>
+                  <th scope="col">Жанр</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr *ngFor="let book of authorBook">
+                  <td>{{book.name}}</td>
+                  <td>{{book.numberOfPages}}</td>
+                  <td>{{book.genre}}</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+      <div class="wrapper__form">
+         <button (click)="goBack()" class="btn btn-dark">Вернуться назад</button>
+         <!-- Добавить жанр -->
+         <form #formRedactGenre="ngForm" action="#">
+            <div>
+               <p><b>Добавить жанр:</b></p>
+               <input type="text" name="name" ngModel id="nameGenre" required>
+            </div>
+            <input type="submit" value="Добавить жанр" [disabled]="formRedactGenre.invalid"
+               (click)="redactGenre(formRedactGenre)">
+         </form>
+         <!-- Добавить книгу -->
+         <form #formBook="ngForm" action="#">
+            <p><b>Добавить книгу:</b></p>
+            <div>
+               <label for="">Название книги :</label>
+               <input type="text" name="name" ngModel required id="nameBookAdd">
+            </div>
+            <div>
+               <label for="">Количество страниц :</label>
+               <input type="number" name="numberOfPages" ngModel required id="pageAdd">
+            </div>
+            <div>
+               <label for="">Жанр :</label>
+               <select name="genre" ngModel required>
+                  <option value="{{genre}}" *ngFor="let genre of genreList">{{genre}}</option>
+               </select>
+            </div>
+            <input type="submit" value="Добавить книгу" [disabled]="formBook.invalid" (click)="addBook(formBook)">
+         </form>
+
+         <!-- Редактировать книгу -->
+         <form #formRedactBook="ngForm" action="#">
+            <div>
+               <p><b>Редактировать книгу:</b></p>
+               <select ngModel name="idBook">
+                  <option value="{{book.name}}" *ngFor="let book of authorBook">{{book.name}}</option>
+               </select>
+            </div>
+            <div>
+               <label for="">Название книги :</label>
+               <input type="text" name="name" ngModel required id="nameBookAdd">
+            </div>
+            <div>
+               <label for="">Количество страниц :</label>
+               <input type="number" name="numberOfPages" ngModel required id="pageAdd">
+            </div>
+            <div>
+               <label for="">Жанр :</label>
+               <select name="genre" ngModel required>
+                  <option value="{{genre}}" *ngFor="let genre of genreList">{{genre}}</option>
+               </select>
+            </div>
+            <input type="submit" value="Редактировать книгу" [disabled]="formRedactBook.invalid"
+               (click)="redactBook(formRedactBook)">
+         </form>
+
+         <!-- Удалить книгу -->
+
+         <form #formDelBook="ngForm" action="#">
+            <div>
+               <p><b>Удалить книгу:</b></p>
+               <select ngModel name="idBook" required>
+                  <option value="{{book.name}}" *ngFor="let book of authorBook">{{book.name}}</option>
+               </select>
+            </div>
+
+            <input type="submit" value="Удалить книгу" [disabled]="formDelBook.invalid" (click)="delBook(formDelBook)">
+
+         </form>
+      </div>
+   </div>
+</div>

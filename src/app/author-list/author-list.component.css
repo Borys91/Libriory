@@ -1,0 +1,93 @@
+form{
+   display: flex;
+   flex-direction: column;
+   margin:20px 0;
+}
+input{
+         margin: 5px 0;
+      }
+select{
+   width: 185.6px;
+}
+form>div{
+   display: flex;
+   justify-content: space-between;
+}
+.addAuthor.ng-valid input[type=submit] , .redactAuthor.ng-valid input[type=submit]{
+   background-color: rgb(38, 224, 21);
+}
+.delAuthor.ng-valid input[type=submit]{
+   background-color: red;
+}
+.wrapper{
+   display: flex;
+   justify-content: center;
+}
+.wrapper__form{
+   order: 1;
+   flex: 0 1 auto;
+}
+.wrapper__authors{
+   margin: 0 0 0 20px;
+   order: 2;
+}
+.authors__table{
+   display: block;
+   max-width: 880px;
+   overflow:auto;
+}
+/* .search{
+   margin-left: 20px;
+} */
+@media (max-width:1300px) {
+   .wrapper{
+      flex-direction: column;
+   }
+   .wrapper__authors{
+      align-self: flex-start;
+      margin: 0 auto;
+      order: 1;
+   }
+   .wrapper__form{
+      order: 2;
+   }
+   form>div{
+      justify-content: space-between;
+      
+   }
+   form{
+      margin: 0 15%;
+   }
+   .authors__table{
+      max-width: 850px;
+   }
+   
+}
+@media (max-width:900px) {
+   .authors__table{
+      max-width: 650px;
+   }
+}
+@media (max-width:768px) {
+   .wrapper{
+      padding: 5px;
+   }
+   .wrapper__authors{
+      flex-direction: column;
+      
+   }
+   .search{
+      margin-left: 0;
+   }
+   .authors__table{
+      max-width: 480px;
+   }
+}
+@media (max-width:600px) {
+   .authors__table{
+      max-width: 320px;
+   }
+   form>div{
+      flex-direction: column;
+   }
+}
